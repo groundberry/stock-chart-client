@@ -6,9 +6,19 @@
   background-color: #282c34;
   min-height: 15vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
   color: white;
+}
+
+.App-header h1 {
+  display: inline;
+}
+
+@media (max-width: 750px) {
+  .App-header {
+    flex-direction: column;
+  }
 }
