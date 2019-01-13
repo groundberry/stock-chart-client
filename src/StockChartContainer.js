@@ -18,9 +18,9 @@ const stockData = require("./stock-data.json");
 const from = new Date("2009/02/05");
 const to = new Date("2011/10/07");
 
-const StockChartContainer = (props) => (
+const StockChartContainer = props => (
   <StockChart>
-    <ChartTitle text={ props.companyName } />
+    <ChartTitle text={`${props.company} - ${props.symbol}`} />
     <ChartSeries>
       <ChartSeriesItem
         data={stockData}

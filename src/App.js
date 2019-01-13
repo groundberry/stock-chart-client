@@ -1,35 +1,47 @@
 import React, { Component } from "react";
 import Form from "./Form";
 import StockChartContainer from "./StockChartContainer";
+import { fetchStocksData } from "./utils";
 import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
+
     this.state = {
-      companyName: ""
+      stocksData: {},
+      symbol: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(evt) {
-    console.log(evt.target.value);
+    const symbol = evt.target.value;
+
     this.setState({
-      companyName: evt.target.value,
+      symbol: symbol
+    });
+
+    fetchStocksData(symbol).then(data => {
+      this.setState({ stocksData: data });
     });
   }
 
   render() {
-    const { companyName } = this.state;
+    const { symbol, stocksData } = this.state;
+
+    const company = stocksData[symbol]
+      ? stocksData[symbol].quote.companyName
+      : "";
 
     return (
       <div className="App">
         <header className="App-header">
           <h1>StockChart</h1>
-          <Form companyName={companyName} onChange={this.handleChange} />
+          <Form onChange={this.handleChange} />
         </header>
-        <StockChartContainer companyName={companyName} />
+        {symbol && <StockChartContainer symbol={symbol} company={company} />}
       </div>
     );
   }

@@ -10,8 +10,9 @@ const Form = (props) => {
         <label>
           <h2 className="Form-label">Select company:</h2>
           <select onChange={onChange}>
+            <option value="">-</option>
             <option value="MSFT">Microsoft</option>
-            <option value="APPL">Apple</option>
+            <option value="AAPL">Apple</option>
             <option value="FB">Facebook</option>
             <option value="AMZN">Amazon</option>
           </select>
