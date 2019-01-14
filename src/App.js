@@ -33,15 +33,24 @@ class App extends Component {
 
     const company = stocksData[symbol]
       ? stocksData[symbol].quote.companyName
-      : "";
+      : undefined;
 
+    const stockData = stocksData[symbol] ? stocksData[symbol].chart : undefined;
+
+    console.log(stockData);
     return (
       <div className="App">
         <header className="App-header">
           <h1>StockChart</h1>
           <Form onChange={this.handleChange} />
         </header>
-        {symbol && <StockChartContainer symbol={symbol} company={company} />}
+        {symbol && company && stockData && (
+          <StockChartContainer
+            symbol={symbol}
+            company={company}
+            stockData={stockData}
+          />
+        )}
       </div>
     );
   }

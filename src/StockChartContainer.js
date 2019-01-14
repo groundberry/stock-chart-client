@@ -12,38 +12,42 @@ import {
 } from "@progress/kendo-react-charts";
 import "@progress/kendo-theme-default/dist/all.css";
 import "hammerjs";
+import { getData } from "./utils";
 
-const stockData = require("./stock-data.json");
+const StockChartContainer = props => {
+  const { stockData } = props;
+  const processedStockData = stockData.map(getData);
 
-const from = new Date("2009/02/05");
-const to = new Date("2011/10/07");
+  const from = new Date(stockData[0].date);
+  const to = new Date(stockData[stockData.length - 1].date);
 
-const StockChartContainer = props => (
-  <StockChart>
-    <ChartTitle text={`${props.company} - ${props.symbol}`} />
-    <ChartSeries>
-      <ChartSeriesItem
-        data={stockData}
-        type="candlestick"
-        openField="Open"
-        closeField="Close"
-        lowField="Low"
-        highField="High"
-        categoryField="Date"
-      />
-    </ChartSeries>
-    <ChartNavigator>
-      <ChartNavigatorSelect from={from} to={to} />
-      <ChartNavigatorSeries>
-        <ChartNavigatorSeriesItem
-          data={stockData}
-          type="area"
-          field="Close"
+  return (
+    <StockChart>
+      <ChartTitle text={`${props.company} - ${props.symbol}`} />
+      <ChartSeries>
+        <ChartSeriesItem
+          data={processedStockData}
+          type="candlestick"
+          openField="Open"
+          closeField="Close"
+          lowField="Low"
+          highField="High"
           categoryField="Date"
         />
-      </ChartNavigatorSeries>
-    </ChartNavigator>
-  </StockChart>
-);
+      </ChartSeries>
+      <ChartNavigator>
+        <ChartNavigatorSelect from={from} to={to} />
+        <ChartNavigatorSeries>
+          <ChartNavigatorSeriesItem
+            data={processedStockData}
+            type="area"
+            field="Close"
+            categoryField="Date"
+          />
+        </ChartNavigatorSeries>
+      </ChartNavigator>
+    </StockChart>
+  );
+};
 
 export default StockChartContainer;
