@@ -10,7 +10,6 @@ import {
   ChartNavigatorSeries,
   ChartNavigatorSeriesItem
 } from "@progress/kendo-react-charts";
-import "@progress/kendo-theme-default/dist/all.css";
 import "hammerjs";
 import { getData } from "./utils";
 

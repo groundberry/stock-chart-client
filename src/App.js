@@ -3,6 +3,7 @@ import SymbolForm from "./SymbolForm";
 import StockChart from "./StockChart";
 import RangeButtons from "./RangeButtons";
 import { fetchStocksData } from "./utils";
+import "@progress/kendo-theme-material/dist/all.css";
 import "./App.css";
 
 class App extends Component {
@@ -16,30 +17,16 @@ class App extends Component {
     };
 
     this.handleChangeSymbol = this.handleChangeSymbol.bind(this);
-    this.handleSubmitSymbol = this.handleSubmitSymbol.bind(this);
     this.handleClickRange = this.handleClickRange.bind(this);
+    this.updateStockData = this.updateStockData.bind(this);
   }
 
   handleChangeSymbol(symbol) {
-    this.setState({ symbol });
-  }
-
-  handleSubmitSymbol() {
-    const { symbol, range } = this.state;
-
-    fetchStocksData(symbol, range).then(stocksData => {
-      this.setState({ stocksData });
-    });
+    this.setState({ symbol }, this.updateStockData);
   }
 
   handleClickRange(range) {
-    const { symbol } = this.state;
-
-    this.setState({ range });
-
-    fetchStocksData(symbol, range).then(stocksData => {
-      this.setState({ stocksData });
-    });
+    this.setState({ range }, this.updateStockData);
   }
 
   render() {
@@ -54,16 +41,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1>StockChart</h1>
           <SymbolForm
             value={symbol}
             onChange={this.handleChangeSymbol}
             onSubmit={this.handleSubmitSymbol}
           />
+          <RangeButtons value={range} onClick={this.handleClickRange} />
         </header>
         {symbol && company && stockData && (
-          <div className="App-chart-container">
-            <RangeButtons value={range} onClick={this.handleClickRange} />
+          <div className="App-chart">
             <StockChart
               symbol={symbol}
               company={company}
@@ -73,6 +59,14 @@ class App extends Component {
         )}
       </div>
     );
+  }
+
+  updateStockData() {
+    const { symbol, range } = this.state;
+
+    fetchStocksData(symbol, range).then(stocksData => {
+      this.setState({ stocksData });
+    });
   }
 }
 

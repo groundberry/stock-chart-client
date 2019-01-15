@@ -3,22 +3,17 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  border-bottom: 1px solid #282c34;
   min-height: 15vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 1vmin);
-  color: white;
 }
 
 .App-chart-container {
   margin-top: 10px;
-}
-
-.App-header h1 {
-  display: inline;
 }
 
 @media (max-width: 750px) {
