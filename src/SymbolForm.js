@@ -1,40 +1,35 @@
 import React, { Component } from "react";
-import "./SymbolForm.css";
+import { Input } from "@progress/kendo-react-inputs";
 
 class Form extends Component {
   constructor(props) {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   render() {
     const { value } = this.props;
 
     return (
-      <div className="Form">
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            <h2 className="Form-label">Enter company's symbol:</h2>
-            <input type="text" value={value} onChange={this.handleChange} />
-            <input type="submit" value="Submit" />
-          </label>
-        </form>
-      </div>
+      <form className="k-form">
+        <Input
+          name="symbol"
+          label="Company's symbol"
+          pattern={"[A-Z]{1,4}"}
+          minLength={1}
+          required={true}
+          value={value}
+          onChange={this.handleChange}
+        />
+      </form>
     );
   }
 
   handleChange(evt) {
     const { onChange } = this.props;
-    onChange(evt.target.value);
-  }
-
-  handleSubmit(evt) {
-    evt.preventDefault();
-
-    const { onSubmit } = this.props;
-    onSubmit();
+    const symbol = evt.target.value;
+    onChange(symbol);
   }
 }
 
