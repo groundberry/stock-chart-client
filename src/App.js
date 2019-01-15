@@ -1,35 +1,49 @@
 import React, { Component } from "react";
-import Form from "./Form";
-import StockChartContainer from "./StockChartContainer";
+import SymbolForm from "./SymbolForm";
+import StockChart from "./StockChart";
+import RangeButtons from "./RangeButtons";
 import { fetchStocksData } from "./utils";
 import "./App.css";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       stocksData: {},
-      symbol: ""
+      symbol: "",
+      range: "1m"
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeSymbol = this.handleChangeSymbol.bind(this);
+    this.handleSubmitSymbol = this.handleSubmitSymbol.bind(this);
+    this.handleClickRange = this.handleClickRange.bind(this);
   }
 
-  handleChange(evt) {
-    const symbol = evt.target.value;
+  handleChangeSymbol(symbol) {
+    this.setState({ symbol });
+  }
 
-    this.setState({
-      symbol: symbol
+  handleSubmitSymbol() {
+    const { symbol, range } = this.state;
+
+    fetchStocksData(symbol, range).then(stocksData => {
+      this.setState({ stocksData });
     });
+  }
 
-    fetchStocksData(symbol).then(data => {
-      this.setState({ stocksData: data });
+  handleClickRange(range) {
+    const { symbol } = this.state;
+
+    this.setState({ range });
+
+    fetchStocksData(symbol, range).then(stocksData => {
+      this.setState({ stocksData });
     });
   }
 
   render() {
-    const { symbol, stocksData } = this.state;
+    const { symbol, range, stocksData } = this.state;
 
     const company = stocksData[symbol]
       ? stocksData[symbol].quote.companyName
@@ -37,19 +51,25 @@ class App extends Component {
 
     const stockData = stocksData[symbol] ? stocksData[symbol].chart : undefined;
 
-    console.log(stockData);
     return (
       <div className="App">
         <header className="App-header">
           <h1>StockChart</h1>
-          <Form onChange={this.handleChange} />
+          <SymbolForm
+            value={symbol}
+            onChange={this.handleChangeSymbol}
+            onSubmit={this.handleSubmitSymbol}
+          />
         </header>
         {symbol && company && stockData && (
-          <StockChartContainer
-            symbol={symbol}
-            company={company}
-            stockData={stockData}
-          />
+          <div className="App-chart-container">
+            <RangeButtons value={range} onClick={this.handleClickRange} />
+            <StockChart
+              symbol={symbol}
+              company={company}
+              stockData={stockData}
+            />
+          </div>
         )}
       </div>
     );

@@ -14,7 +14,7 @@ import "@progress/kendo-theme-default/dist/all.css";
 import "hammerjs";
 import { getData } from "./utils";
 
-const StockChartContainer = props => {
+const CustomStockChart = props => {
   const { stockData } = props;
   const processedStockData = stockData.map(getData);
 
@@ -50,4 +50,4 @@ const StockChartContainer = props => {
   );
 };
 
-export default StockChartContainer;
+export default CustomStockChart;
