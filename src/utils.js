@@ -1,5 +1,4 @@
-// const serverUrl = "https://stock-chart-proxy.herokuapp.com/";
-const serverUrl = "http://localhost:3001";
+const serverUrl = "https://stock-chart-proxy.herokuapp.com/";
 
 export function fetchStocksData(companyName, range) {
   const url = `${serverUrl}?companyName=${companyName}&range=${range}`;
