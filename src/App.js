@@ -55,6 +55,9 @@ class App extends Component {
               company={company}
               stockData={stockData}
             />
+            <p>
+              Data provided for free by <a href="https://iextrading.com/developer/">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
+            </p>
           </div>
         )}
       </div>
