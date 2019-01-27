@@ -11,21 +11,21 @@ import {
   ChartNavigatorSeriesItem
 } from "@progress/kendo-react-charts";
 import "hammerjs";
-import { getData } from "./utils";
+import { massageData } from "./utils";
 
 const CustomStockChart = props => {
-  const { stockData } = props;
-  const processedStockData = stockData.map(getData);
+  const { data } = props;
+  const massagedData = data.map(massageData);
 
-  const from = new Date(stockData[0].date);
-  const to = new Date(stockData[stockData.length - 1].date);
+  const from = new Date(data[0].date);
+  const to = new Date(data[data.length - 1].date);
 
   return (
     <StockChart>
       <ChartTitle text={`${props.company} - ${props.symbol}`} />
       <ChartSeries>
         <ChartSeriesItem
-          data={processedStockData}
+          data={massagedData}
           type="candlestick"
           openField="Open"
           closeField="Close"
@@ -38,7 +38,7 @@ const CustomStockChart = props => {
         <ChartNavigatorSelect from={from} to={to} />
         <ChartNavigatorSeries>
           <ChartNavigatorSeriesItem
-            data={processedStockData}
+            data={massagedData}
             type="area"
             field="Close"
             categoryField="Date"

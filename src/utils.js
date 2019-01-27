@@ -1,7 +1,7 @@
 const serverUrl = "https://stock-chart-proxy.herokuapp.com/";
 
-export function fetchStocksData(companyName, range) {
-  const url = `${serverUrl}?companyName=${companyName}&range=${range}`;
+export function fetchData(symbol, range) {
+  const url = `${serverUrl}?symbol=${symbol}&range=${range}`;
 
   return fetch(url)
     .then(response => {
@@ -12,7 +12,7 @@ export function fetchStocksData(companyName, range) {
     });
 }
 
-export function getData(obj) {
+export function massageData(obj) {
   return {
     Date: `/Date(${new Date(obj.date).getTime()})/`,
     Close: obj.close,

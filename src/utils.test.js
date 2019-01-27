@@ -1,6 +1,6 @@
-import { getData } from "./utils";
+import { massageData } from "./utils";
 
-describe("getData", () => {
+describe("massageData", () => {
   const obj = {
     change: 0.37,
     changeOverTime: 0,
@@ -25,6 +25,6 @@ describe("getData", () => {
   };
 
   it("returns an object with the formatted data", () => {
-    expect(getData(obj)).toEqual(result);
+    expect(massageData(obj)).toEqual(result);
   });
 });

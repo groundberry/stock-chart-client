@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import SymbolForm from "./SymbolForm";
 import StockChart from "./StockChart";
 import RangeButtons from "./RangeButtons";
-import { fetchStocksData } from "./utils";
+import { fetchData } from "./utils";
 import "@progress/kendo-theme-material/dist/all.css";
 import "./App.css";
 
@@ -11,9 +11,9 @@ class App extends Component {
     super(props);
 
     this.state = {
-      stocksData: {},
       symbol: "",
-      range: "1m"
+      range: "1m",
+      stockData: {}
     };
 
     this.handleChangeSymbol = this.handleChangeSymbol.bind(this);
@@ -30,13 +30,13 @@ class App extends Component {
   }
 
   render() {
-    const { symbol, range, stocksData } = this.state;
+    const { symbol, range, stockData } = this.state;
 
-    const company = stocksData[symbol]
-      ? stocksData[symbol].quote.companyName
+    const company = stockData[symbol]
+      ? stockData[symbol].quote.companyName
       : undefined;
 
-    const stockData = stocksData[symbol] ? stocksData[symbol].chart : undefined;
+    const chartData = stockData[symbol] ? stockData[symbol].chart : undefined;
 
     return (
       <div className="App">
@@ -48,15 +48,16 @@ class App extends Component {
           />
           <RangeButtons value={range} onClick={this.handleClickRange} />
         </header>
-        {symbol && company && stockData && (
+        {symbol && company && chartData && (
           <div className="App-chart">
-            <StockChart
-              symbol={symbol}
-              company={company}
-              stockData={stockData}
-            />
+            <StockChart symbol={symbol} company={company} data={chartData} />
             <p>
-              Data provided for free by <a href="https://iextrading.com/developer/">IEX</a>. View <a href="https://iextrading.com/api-exhibit-a/">IEX’s Terms of Use</a>.
+              Data provided for free by{" "}
+              <a href="https://iextrading.com/developer/">IEX</a>. View{" "}
+              <a href="https://iextrading.com/api-exhibit-a/">
+                IEX’s Terms of Use
+              </a>
+              .
             </p>
           </div>
         )}
@@ -67,8 +68,8 @@ class App extends Component {
   updateStockData() {
     const { symbol, range } = this.state;
 
-    fetchStocksData(symbol, range).then(stocksData => {
-      this.setState({ stocksData });
+    fetchData(symbol, range).then(stockData => {
+      this.setState({ stockData });
     });
   }
 }
