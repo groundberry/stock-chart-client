@@ -68,9 +68,17 @@ class App extends Component {
   updateStockData() {
     const { symbol, range } = this.state;
 
-    fetchData(symbol, range).then(stockData => {
-      this.setState({ stockData });
-    });
+    if (!symbol || !range) {
+      return;
+    }
+
+    fetchData(symbol, range)
+      .then(stockData => {
+        this.setState({ stockData });
+      })
+      .catch(err => {
+        console.error("Could not fetch stock data:", err);
+      });
   }
 }
 

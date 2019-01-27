@@ -16,7 +16,7 @@ class Form extends Component {
         <Input
           name="symbol"
           label="Company's symbol"
-          pattern={"[A-Z]{1,4}"}
+          pattern={"[A-Za-z-]+"}
           minLength={1}
           required={true}
           value={value}
