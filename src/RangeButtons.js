@@ -8,8 +8,11 @@ class ButtonGroupContainer extends Component {
     super(props);
 
     this.handleClickOneMonth = this.handleClick.bind(this, "1m");
+    this.handleClickThreeMonths = this.handleClick.bind(this, "3m");
     this.handleClickSixMonths = this.handleClick.bind(this, "6m");
     this.handleClickOneYear = this.handleClick.bind(this, "1y");
+    this.handleClickTwoYears = this.handleClick.bind(this, "2y");
+    this.handleClickFiveYears = this.handleClick.bind(this, "5y");
   }
 
   render() {
@@ -19,25 +22,52 @@ class ButtonGroupContainer extends Component {
       <div className="RangeButtons">
         <ButtonGroup>
           <Button
+            title="1 month"
             togglable={true}
             selected={value === "1m"}
             onClick={this.handleClickOneMonth}
           >
-            1 month
+            1M
           </Button>
           <Button
+            title="3 months"
+            togglable={true}
+            selected={value === "3m"}
+            onClick={this.handleClickThreeMonths}
+          >
+            3M
+          </Button>
+          <Button
+            title="6 months"
             togglable={true}
             selected={value === "6m"}
             onClick={this.handleClickSixMonths}
           >
-            6 months
+            6M
           </Button>
           <Button
+            title="1 year"
             togglable={true}
             selected={value === "1y"}
             onClick={this.handleClickOneYear}
           >
-            1 year
+            1Y
+          </Button>
+          <Button
+            title="2 years"
+            togglable={true}
+            selected={value === "2y"}
+            onClick={this.handleClickTwoYears}
+          >
+            2Y
+          </Button>
+          <Button
+            title="5 years"
+            togglable={true}
+            selected={value === "5y"}
+            onClick={this.handleClickFiveYears}
+          >
+            5Y
           </Button>
         </ButtonGroup>
       </div>
