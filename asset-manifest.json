@@ -1,15 +1,15 @@
 {
   "main.css": "/stock-chart-client/static/css/main.ae570774.chunk.css",
-  "main.js": "/stock-chart-client/static/js/main.af1bb05e.chunk.js",
-  "main.js.map": "/stock-chart-client/static/js/main.af1bb05e.chunk.js.map",
+  "main.js": "/stock-chart-client/static/js/main.7c141a39.chunk.js",
+  "main.js.map": "/stock-chart-client/static/js/main.7c141a39.chunk.js.map",
   "static/css/1.6c0f2eb5.chunk.css": "/stock-chart-client/static/css/1.6c0f2eb5.chunk.css",
-  "static/js/1.921d051c.chunk.js": "/stock-chart-client/static/js/1.921d051c.chunk.js",
-  "static/js/1.921d051c.chunk.js.map": "/stock-chart-client/static/js/1.921d051c.chunk.js.map",
+  "static/js/1.0cecca2d.chunk.js": "/stock-chart-client/static/js/1.0cecca2d.chunk.js",
+  "static/js/1.0cecca2d.chunk.js.map": "/stock-chart-client/static/js/1.0cecca2d.chunk.js.map",
   "runtime~main.js": "/stock-chart-client/static/js/runtime~main.6554192b.js",
   "runtime~main.js.map": "/stock-chart-client/static/js/runtime~main.6554192b.js.map",
-  "static/css/main.ae570774.chunk.css.map": "/stock-chart-client/static/css/main.ae570774.chunk.css.map",
   "static/css/1.6c0f2eb5.chunk.css.map": "/stock-chart-client/static/css/1.6c0f2eb5.chunk.css.map",
+  "static/css/main.ae570774.chunk.css.map": "/stock-chart-client/static/css/main.ae570774.chunk.css.map",
   "index.html": "/stock-chart-client/index.html",
-  "precache-manifest.aefe684f9559e0fd852a4d9b82409ffd.js": "/stock-chart-client/precache-manifest.aefe684f9559e0fd852a4d9b82409ffd.js",
+  "precache-manifest.04ea045b47dd35ef10d598be13f7fbc3.js": "/stock-chart-client/precache-manifest.04ea045b47dd35ef10d598be13f7fbc3.js",
   "service-worker.js": "/stock-chart-client/service-worker.js"
 }
