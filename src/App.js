@@ -21,14 +21,6 @@ class App extends Component {
     this.updateStockData = this.updateStockData.bind(this);
   }
 
-  handleChangeSymbol(symbol) {
-    this.setState({ symbol }, this.updateStockData);
-  }
-
-  handleClickRange(range) {
-    this.setState({ range }, this.updateStockData);
-  }
-
   render() {
     const { symbol, range, stockData } = this.state;
 
@@ -41,11 +33,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <SymbolForm
-            value={symbol}
-            onChange={this.handleChangeSymbol}
-            onSubmit={this.handleSubmitSymbol}
-          />
+          <SymbolForm value={symbol} onChange={this.handleChangeSymbol} />
           <RangeButtons value={range} onClick={this.handleClickRange} />
         </header>
         {symbol && company && chartData && (
@@ -65,20 +53,27 @@ class App extends Component {
     );
   }
 
-  updateStockData() {
+  handleChangeSymbol(symbol) {
+    this.setState({ symbol }, this.updateStockData);
+  }
+
+  handleClickRange(range) {
+    this.setState({ range }, this.updateStockData);
+  }
+
+  async updateStockData() {
     const { symbol, range } = this.state;
 
     if (!symbol || !range) {
       return;
     }
 
-    fetchData(symbol, range)
-      .then(stockData => {
-        this.setState({ stockData });
-      })
-      .catch(err => {
-        console.error("Could not fetch stock data:", err);
-      });
+    try {
+      const stockData = await fetchData(symbol, range);
+      this.setState({ stockData });
+    } catch (err) {
+      console.error("Could not fetch stock data:", err);
+    }
   }
 }
 
