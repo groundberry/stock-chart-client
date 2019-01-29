@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input } from "@progress/kendo-react-inputs";
 
-class Form extends Component {
+class SymbolForm extends Component {
   constructor(props) {
     super(props);
 
@@ -33,4 +33,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default SymbolForm;
