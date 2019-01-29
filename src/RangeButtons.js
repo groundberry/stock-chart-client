@@ -3,7 +3,7 @@ import { Button, ButtonGroup } from "@progress/kendo-react-buttons";
 
 import "./RangeButtons.css";
 
-class ButtonGroupContainer extends Component {
+class RangeButtons extends Component {
   constructor(props) {
     super(props);
 
@@ -80,4 +80,4 @@ class ButtonGroupContainer extends Component {
   }
 }
 
-export default ButtonGroupContainer;
+export default RangeButtons;
