@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       symbol: "",
       range: "1m",
-      stockData: {}
+      stockData: {},
     };
 
     this.handleChangeSymbol = this.handleChangeSymbol.bind(this);
@@ -24,11 +24,9 @@ class App extends Component {
   render() {
     const { symbol, range, stockData } = this.state;
 
-    const company = stockData[symbol]
-      ? stockData[symbol].quote.companyName
-      : undefined;
+    const company = stockData.quote ? stockData.quote.companyName : undefined;
 
-    const chartData = stockData[symbol] ? stockData[symbol].chart : undefined;
+    const chartData = stockData.chart ? stockData.chart : undefined;
 
     return (
       <div className="App">
