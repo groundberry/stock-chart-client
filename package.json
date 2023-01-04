@@ -13,7 +13,7 @@
     "hammerjs": "^2.0.8",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts": "2.1.3"
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
     "gh-pages": "^2.0.1"
